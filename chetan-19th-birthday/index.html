@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy 19th Birthday Chetan! | Motion Celebration</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <!-- Canvas Confetti CDN with offline fallback -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body class="theme-midnight">
+  <!-- Background Ambient Particles Canvas -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- Interactive Entrance Curtain Modal -->
+  <div id="entrance-overlay" class="entrance-overlay">
+    <div class="entrance-card">
+      <div class="entrance-sparkle">✨</div>
+      <div class="entrance-badge">SPECIAL CELEBRATION DISPATCH</div>
+      <h1 class="entrance-title">A Grand 19th Birthday Tribute</h1>
+      <p class="entrance-subtitle">Dedicated to our brother <span class="highlight-gold">Chetan Hotkar</span></p>
+      
+      <div class="envelope-preview">
+        <div class="envelope-stamp">24 OCT</div>
+        <div class="envelope-seal">🎂 19</div>
+        <p class="envelope-from">Crafted with love from <strong>Harsh Gupta</strong></p>
+      </div>
+
+      <button id="enter-btn" class="glow-button enter-action-btn">
+        <span class="btn-icon">🎵</span>
+        <span class="btn-text">Open Celebration with Music</span>
+        <span class="btn-shine"></span>
+      </button>
+      <p class="entrance-hint">Tap to unlock music, motion & cake cutting experience</p>
+    </div>
+  </div>
+
+  <!-- Audio Controls Dock (Fixed) -->
+  <div class="audio-dock" id="audio-dock">
+    <button id="music-toggle-btn" class="audio-control-btn" title="Play / Pause Birthday Track">
+      <span class="music-icon" id="music-icon">🎵</span>
+      <div class="sound-waves" id="sound-waves">
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </button>
+    <div class="audio-info">
+      <span class="track-title">Happy Birthday Chetan! 🎶</span>
+      <span class="track-status" id="track-status">Playing festive track</span>
+    </div>
+    <button id="sfx-cheer-btn" class="audio-pill-btn" title="Play Cheers!">🎉 Cheer!</button>
+  </div>
+
+  <!-- Local Audio Elements -->
+  <audio id="bg-audio" preload="auto" loop src="assets/audio/happy_birthday.wav"></audio>
+  <audio id="pop-audio" preload="auto" src="assets/audio/pop.wav"></audio>
+  <audio id="sparkle-audio" preload="auto" src="assets/audio/sparkle.wav"></audio>
+  <audio id="cheer-audio" preload="auto" src="assets/audio/cheer.wav"></audio>
+
+  <!-- Main Web Experience -->
+  <div class="site-wrapper" id="site-wrapper">
+
+    <!-- Top Navigation Bar -->
+    <header class="top-nav">
+      <div class="nav-brand">
+        <span class="brand-crown">👑</span>
+        <span class="brand-name">CHETAN HOTKAR</span>
+        <span class="brand-tag">CHAPTER 19</span>
+      </div>
+      <div class="nav-date">
+        <span class="calendar-icon">📅</span>
+        <span class="date-text">24 OCTOBER</span>
+      </div>
+      <div class="nav-actions">
+        <button class="nav-btn confetti-blast-btn" onclick="blastFestiveConfetti()">🎊 Blast Sparks</button>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section" id="hero">
+      <div class="hero-glow-sphere"></div>
+      
+      <div class="hero-badges">
+        <span class="hero-pill gold-pill">✨ 24th October 2026 Special</span>
+        <span class="hero-pill purple-pill">🔥 19 Years of Being a Legend</span>
+      </div>
+
+      <h1 class="hero-main-title">
+        <span class="title-sub">HAPPY 19TH BIRTHDAY</span>
+        <span class="title-name text-gradient-gold">CHETAN HOTKAR</span>
+      </h1>
+
+      <p class="hero-tagline">
+        Stepping into Chapter 19 with unstoppable style, big dreams, and pure brotherhood!
+      </p>
+
+      <!-- 19th Milestone Counter Card -->
+      <div class="milestone-box">
+        <div class="milestone-number-wrap">
+          <span class="milestone-prev">18</span>
+          <span class="milestone-arrow">➔</span>
+          <span class="milestone-current pulse-glow">19</span>
+        </div>
+        <div class="milestone-text">
+          <h3>LEVEL 19 UNLOCKED!</h3>
+          <p>Another year older, bolder, and more iconic. Wishing you peak greatness ahead!</p>
+        </div>
+      </div>
+
+      <div class="hero-cta-group">
+        <a href="#cake-section" class="primary-cta-btn">
+          <span>🎂 Cut Chetan's Birthday Cake</span>
+        </a>
+        <a href="#memories-section" class="secondary-cta-btn">
+          <span>📸 View Photo Memories</span>
+        </a>
+        <a href="#tribute-section" class="tribute-cta-btn">
+          <span>💌 From Harsh Gupta</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Interactive Birthday Cake & Candle Ceremony Section -->
+    <section class="cake-ceremony-section" id="cake-section">
+      <div class="section-header">
+        <span class="section-tag">TRADITION & CELEBRATION</span>
+        <h2 class="section-title">The Grand 19th Birthday Cake</h2>
+        <p class="section-desc">Make a wish for Chetan! Blow the candles and cut the celebratory cake.</p>
+      </div>
+
+      <div class="cake-stage-container">
+        <!-- Interactive 3D CSS / SVG Cake -->
+        <div class="cake-stage" id="cake-stage">
+          <div class="cake-glow-backdrop"></div>
+
+          <!-- Cake Plate -->
+          <div class="cake-plate"></div>
+
+          <!-- Cake Structure (Top-to-Bottom: Candles -> Top Tier -> Middle Tier -> Bottom Tier -> Plate) -->
+          <div class="cake-body" id="cake-body">
+            <!-- Tier 1: Top Tier (Smallest, Holds the Number 19 Candles) -->
+            <div class="cake-tier tier-top">
+              <!-- Number Candles: 1 and 9 on top of the cake -->
+              <div class="candles-wrapper" id="candles-wrapper">
+                <!-- Candle 1 -->
+                <div class="candle-item candle-1" data-candle="1" title="Click to blow out!">
+                  <div class="flame" id="flame-1">
+                    <div class="flame-core"></div>
+                    <div class="flame-aura"></div>
+                  </div>
+                  <div class="candle-wick"></div>
+                  <div class="candle-stick number-stick">1</div>
+                </div>
+
+                <!-- Candle 9 -->
+                <div class="candle-item candle-9" data-candle="9" title="Click to blow out!">
+                  <div class="flame" id="flame-9">
+                    <div class="flame-core"></div>
+                    <div class="flame-aura"></div>
+                  </div>
+                  <div class="candle-wick"></div>
+                  <div class="candle-stick number-stick">9</div>
+                </div>
+              </div>
+
+              <!-- Top Frosting Pearls -->
+              <div class="tier-frosting">
+                <span class="pearl gold"></span>
+                <span class="pearl"></span>
+                <span class="pearl gold"></span>
+                <span class="pearl"></span>
+              </div>
+            </div>
+
+            <!-- Tier 2: Middle Tier (Medium) -->
+            <div class="cake-tier tier-middle">
+              <div class="tier-frosting">
+                <span class="pearl"></span>
+                <span class="pearl gold"></span>
+                <span class="pearl"></span>
+                <span class="pearl gold"></span>
+                <span class="pearl"></span>
+                <span class="pearl gold"></span>
+              </div>
+              <div class="tier-stripes"></div>
+            </div>
+
+            <!-- Tier 3: Bottom Tier (Widest Base, Resting on Plate) -->
+            <div class="cake-tier tier-bottom">
+              <div class="tier-frosting">
+                <span class="pearl gold"></span>
+                <span class="pearl"></span>
+                <span class="pearl gold"></span>
+                <span class="pearl"></span>
+                <span class="pearl gold"></span>
+                <span class="pearl"></span>
+                <span class="pearl gold"></span>
+                <span class="pearl"></span>
+              </div>
+              <div class="tier-label">HAPPY 19TH CHETAN</div>
+            </div>
+
+            <!-- Slice Cut Line (Appears on slice) -->
+            <div class="cake-slice-cut" id="cake-slice-cut"></div>
+          </div>
+
+          <!-- Floating Knife (Interactive) -->
+          <div class="ceremonial-knife" id="ceremonial-knife">
+            <div class="knife-blade"></div>
+            <div class="knife-handle"></div>
+          </div>
+        </div>
+
+        <!-- Cake Controls & Wish Display -->
+        <div class="cake-controls-card">
+          <div class="cake-status-badge" id="cake-status-badge">
+            <span class="status-dot green"></span>
+            <span id="cake-status-text">Candles are glowing! Blow them out</span>
+          </div>
+
+          <div class="cake-actions-grid">
+            <button id="blow-candles-btn" class="cake-btn blow-btn" onclick="blowOutCandles()">
+              <span class="btn-emoji">🌬️</span>
+              <span class="btn-label">Blow Candles</span>
+            </button>
+            <button id="cut-cake-btn" class="cake-btn cut-btn" onclick="cutTheCake()">
+              <span class="btn-emoji">🔪</span>
+              <span class="btn-label">Cut the Cake</span>
+            </button>
+            <button id="relight-btn" class="cake-btn relight-btn" onclick="relightCake()">
+              <span class="btn-emoji">✨</span>
+              <span class="btn-label">Relight & Celebrate Again</span>
+            </button>
+          </div>
+
+          <div class="wish-reveal-box" id="wish-reveal-box">
+            <div class="wish-reveal-title">🎉 Birthday Blessing for Chetan:</div>
+            <p class="wish-reveal-text" id="wish-reveal-text">
+              "May your 19th year bring unmatched victories, vibrant health, endless laughter, and success in everything you set your eyes on!"
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Motion Photo Memories Gallery -->
+    <section class="memories-section" id="memories-section">
+      <div class="section-header">
+        <span class="section-tag">ICONIC MOMENTS & MEMORIES</span>
+        <h2 class="section-title">The Chetan Chronicles</h2>
+        <p class="section-desc">From Dubai swagger to Bappa's divine blessings at Lalbaugcha Raja — brotherhood, vibes, and legendary memories.</p>
+      </div>
+
+      <!-- Interactive Gallery Grid -->
+      <div class="gallery-container">
+        <!-- Photo 1: Dubai Burj Khalifa -->
+        <div class="gallery-card card-featured" data-tilt>
+          <div class="card-image-wrap">
+            <img src="assets/images/chetan_dubai.jpg" alt="Chetan Hotkar in Dubai with Burj Khalifa background" class="gallery-img">
+            <div class="image-gradient-overlay"></div>
+            <span class="card-badge gold-badge">👑 The Dubai Swagger</span>
+          </div>
+          <div class="card-content">
+            <span class="card-date">Chapter 19 • Boss Energy</span>
+            <h3 class="card-title">Chetan in Dubai</h3>
+            <p class="card-desc">Aviators on, Burj Khalifa in the backdrop, and pure main character energy. Setting the standards high as always!</p>
+            <div class="card-tags">
+              <span class="tag">#KingStatus</span>
+              <span class="tag">#DubaiVibes</span>
+              <span class="tag">#19YearsYoung</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 2: Lalbaugcha Raja Temple Gate -->
+        <div class="gallery-card" data-tilt>
+          <div class="card-image-wrap">
+            <img src="assets/images/chetan_harsh_lalbaug.jpg" alt="Chetan Hotkar and Harsh Gupta at Lalbaugcha Raja" class="gallery-img">
+            <div class="image-gradient-overlay"></div>
+            <span class="card-badge divine-badge">🙏 Lalbaugcha Raja</span>
+          </div>
+          <div class="card-content">
+            <span class="card-date">Divine Blessings • Brotherhood</span>
+            <h3 class="card-title">Brothers at Lalbaugcha Raja</h3>
+            <p class="card-desc">Seeking Bappa’s blessings side-by-side. Standing strong through every season with Ganpati Bappa's grace!</p>
+            <div class="card-tags">
+              <span class="tag">#BappaMorya</span>
+              <span class="tag">#LalbaugchaRaja</span>
+              <span class="tag">#Brotherhood</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 3: Festivity with Friends -->
+        <div class="gallery-card" data-tilt>
+          <div class="card-image-wrap">
+            <img src="assets/images/chetan_harsh_friends_ganesh.jpg" alt="Chetan, Harsh, and friends in front of Lord Ganesha" class="gallery-img">
+            <div class="image-gradient-overlay"></div>
+            <span class="card-badge vibe-badge">✨ Festive Spirit</span>
+          </div>
+          <div class="card-content">
+            <span class="card-date">Festive Smiles • Lifelong Bonds</span>
+            <h3 class="card-title">The Squad in Front of Bappa</h3>
+            <p class="card-desc">Warm smiles, festive warmth, and brotherhood that only grows deeper with time. Chetan shining bright with the crew!</p>
+            <div class="card-tags">
+              <span class="tag">#SquadGoals</span>
+              <span class="tag">#FestiveCheers</span>
+              <span class="tag">#Brothers</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 4: Lalbaug Candid Moment -->
+        <div class="gallery-card" data-tilt>
+          <div class="card-image-wrap">
+            <img src="assets/images/chetan_harsh_lalbaug_alt.jpg" alt="Chetan and Harsh candid at temple" class="gallery-img">
+            <div class="image-gradient-overlay"></div>
+            <span class="card-badge gold-badge">⚡ Day Ones</span>
+          </div>
+          <div class="card-content">
+            <span class="card-date">Pure Loyalty • Unbreakable</span>
+            <h3 class="card-title">Day One Energy</h3>
+            <p class="card-desc">Moments that turn into cherished memories. Celebrating a brother who always stays genuine and true.</p>
+            <div class="card-tags">
+              <span class="tag">#RealOnes</span>
+              <span class="tag">#Memories</span>
+              <span class="tag">#October24</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dedicated Tribute: "From Harsh Gupta" -->
+    <section class="tribute-section" id="tribute-section">
+      <div class="tribute-card-glow"></div>
+      
+      <div class="tribute-container">
+        <div class="tribute-author-col">
+          <div class="author-frame-wrap" data-tilt>
+            <div class="frame-orbit"></div>
+            <img src="assets/images/harsh_gupta.jpg" alt="Harsh Gupta" class="author-photo">
+            <div class="author-badge">
+              <span class="badge-icon">🤝</span>
+              <span class="badge-title">From Harsh Gupta</span>
+            </div>
+          </div>
+          <p class="author-label">YOUR BROTHER FOR LIFE</p>
+          <div class="brotherhood-stats">
+            <div class="stat-pill">
+              <span class="stat-val">100%</span>
+              <span class="stat-lbl">Loyalty</span>
+            </div>
+            <div class="stat-pill">
+              <span class="stat-val">∞</span>
+              <span class="stat-lbl">Bond</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tribute-message-col">
+          <div class="tribute-tag">A HEARTFELT BIRTHDAY WISH</div>
+          <h2 class="tribute-headline">"To My Brother Chetan On Turning 19"</h2>
+
+          <div class="letter-body">
+            <p class="letter-para">
+              <strong>Dearest Chetan,</strong>
+            </p>
+            <p class="letter-para">
+              Happy 19th Birthday, mere bhai! Today on the <strong>24th of October</strong>, we celebrate you — your kindness, your unstoppable confidence, your infectious vibe, and the brotherly loyalty you bring into our lives.
+            </p>
+            <p class="letter-para">
+              From our unforgettable journeys together, standing in devotion before <em>Lalbaugcha Raja</em>, to watching you rock the Dubai streets with effortless swagger, every memory we share is gold. You're not just a friend; you're family.
+            </p>
+            <p class="letter-para">
+              As you step into 19, may Ganpati Bappa bless you with limitless health, fearless ambitions, grand achievements, and happiness in every step. I'm always cheering for you and got your back no matter what!
+            </p>
+            <div class="letter-signoff">
+              <p class="signoff-quote">"Brothers by heart, partners in every triumph."</p>
+              <div class="signature-line">
+                <span class="signature-text">Always with you,</span>
+                <span class="signature-name">— Harsh Gupta 🤝🔥</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="tribute-quick-actions">
+            <button class="tribute-btn shoutout-btn" onclick="playCheerAndConfetti()">
+              <span>📣 Send Brotherly Shoutout</span>
+            </button>
+            <a href="https://api.whatsapp.com/send?text=Happy%2019th%20Birthday%20Chetan!%20%F0%9F%8E%82%20Wishing%20you%20the%20greatest%20year%20ahead%20brother!%20From%20Harsh%20Gupta" target="_blank" class="tribute-btn whatsapp-btn">
+              <span>💬 WhatsApp Wish to Chetan</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Balloon Popping Mini-Game -->
+    <section class="balloon-game-section" id="balloon-game">
+      <div class="section-header">
+        <span class="section-tag">CELEBRATION MINI-GAME</span>
+        <h2 class="section-title">Pop Chetan's Birthday Balloons! 🎈</h2>
+        <p class="section-desc">Tap or click the floating balloons to pop them with celebratory sparks and unlock special birthday wishes!</p>
+      </div>
+
+      <div class="game-hud">
+        <div class="hud-item">
+          <span class="hud-label">Balloons Popped</span>
+          <span class="hud-value" id="balloon-score">0</span>
+        </div>
+        <div class="hud-item">
+          <span class="hud-label">Birthday Goal</span>
+          <span class="hud-value highlight-gold">19 Balloons</span>
+        </div>
+        <div class="hud-item">
+          <button class="spawn-balloons-btn" onclick="spawnBalloonWave()">🎈 Release More Balloons</button>
+        </div>
+      </div>
+
+      <!-- Balloon Sky Arena -->
+      <div class="balloon-arena" id="balloon-arena">
+        <!-- Interactive floating balloons injected via JS -->
+      </div>
+    </section>
+
+    <!-- 19 Reasons Why Chetan Is An Absolute Legend -->
+    <section class="reasons-section" id="reasons">
+      <div class="section-header">
+        <span class="section-tag">THE 19 TRAITS</span>
+        <h2 class="section-title">Why Chetan Hotkar Is Built Different</h2>
+        <p class="section-desc">The key highlights that make Chetan an absolute legend at 19.</p>
+      </div>
+
+      <div class="reasons-grid">
+        <div class="reason-card" data-tilt>
+          <div class="reason-number">01</div>
+          <div class="reason-icon">👑</div>
+          <h4 class="reason-title">Dubai Swagger</h4>
+          <p class="reason-text">Effortless style and pure confidence wherever he walks.</p>
+        </div>
+
+        <div class="reason-card" data-tilt>
+          <div class="reason-number">02</div>
+          <div class="reason-icon">🤝</div>
+          <h4 class="reason-title">Loyal to the Bone</h4>
+          <p class="reason-text">A true brother who stands shoulder-to-shoulder through thick and thin.</p>
+        </div>
+
+        <div class="reason-card" data-tilt>
+          <div class="reason-number">03</div>
+          <div class="reason-icon">🙏</div>
+          <h4 class="reason-title">Bappa's Favorite</h4>
+          <p class="reason-text">Blessed with positive energy, pure heart, and noble intentions.</p>
+        </div>
+
+        <div class="reason-card" data-tilt>
+          <div class="reason-number">04</div>
+          <div class="reason-icon">🔥</div>
+          <h4 class="reason-title">Fearless Ambition</h4>
+          <p class="reason-text">Dreaming big at 19 and relentlessly pursuing greatness.</p>
+        </div>
+
+        <div class="reason-card" data-tilt>
+          <div class="reason-number">05</div>
+          <div class="reason-icon">⚡</div>
+          <h4 class="reason-title">Electric Energy</h4>
+          <p class="reason-text">Lifts the mood of the entire room the moment he walks in.</p>
+        </div>
+
+        <div class="reason-card" data-tilt>
+          <div class="reason-number">06</div>
+          <div class="reason-icon">🚀</div>
+          <h4 class="reason-title">Level 19 Mastery</h4>
+          <p class="reason-text">Entering adulthood with wisdom, strength, and unstoppable drive.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Celebration Footer & Share Modal -->
+    <footer class="site-footer">
+      <div class="footer-cake-glow">🎂</div>
+      <h3 class="footer-title">Happy 19th Birthday, Chetan Hotkar!</h3>
+      <p class="footer-subtitle">Born on 24th October • Designed with motion & heart by Harsh Gupta</p>
+
+      <div class="footer-actions">
+        <button class="footer-btn" onclick="blastFestiveConfetti()">🎉 Launch Fireworks</button>
+        <button class="footer-btn" onclick="copySiteLink()">📋 Copy Celebration Link</button>
+        <a href="#hero" class="footer-btn back-top-btn">⬆ Back to Top</a>
+      </div>
+
+      <div class="footer-credit">
+        <p>Made especially for Chetan Hotkar | With Love & Brotherhood from Harsh Gupta 🤝</p>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">Celebration Link Copied! 🎁</div>
+
+  <!-- Photo Lightbox Modal -->
+  <div id="lightbox-modal" class="lightbox-modal" onclick="closeLightbox(event)">
+    <div class="lightbox-content">
+      <button class="lightbox-close" onclick="closeLightbox(event)">✕</button>
+      <img id="lightbox-img" src="" alt="Enlarged view">
+      <p id="lightbox-caption" class="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
